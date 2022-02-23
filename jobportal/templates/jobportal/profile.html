@@ -1,0 +1,299 @@
+{% extends "jobportal/base1.html" %}
+<!-- extends file -->
+{% block content %}
+
+<!-- Start home -->
+<section class="bg-half page-next-level">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Candidate Profile</h4>
+                    <ul class="page-next d-inline-block mb-0">
+                        <li><a href="{% url 'index'%}" class="text-uppercase font-weight-bold">Home</a></li>
+                        <li>
+                            <span class="text-uppercase text-white font-weight-bold">Candidate Profile</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end home -->
+
+<!-- POST A JOB START -->
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="rounded shadow bg-white p-4">
+                    <div class="custom-form">
+                        <div id="message3"></div>
+                        <form method="post" action="{%url 'updateprofile' pk=request.session.id%}" name="contact-form" id="contact-form3" nctype="multipart/form-data">
+                            {%csrf_token %}
+                            <h4 class="text-dark mb-3">Update Profile :</h4>
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Title</label>
+                                        <input id="company-name" type="text" class="form-control resume" placeholder="">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">First Name</label>
+                                        <input type="text" name="firstname" id="" class="form-control resume" value="{{can.firstname}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Last Name</label>
+                                        <input type="text" name="lastname" id="" class="form-control resume" value="{{can.lastname}}">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Type</label> {% if can.job_type%}
+                                        <div class="form-button">
+                                            <input id="city" name="job_type" type="text" class="form-control resume" placeholder="" value="{{can.job_type}}">
+                                        </div>
+                                        {%else%}
+                                        <div class="form-button">
+                                            <select name="job_type" id="">
+                                                    <option data-display="Job Type">Job Type</option>
+                                                    <option >Full Time</option>
+                                                    <option >Part Time</option>
+                                                </select>
+                                        </div>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Category</label>
+
+
+
+                                        <div class="form-button">
+
+                                            <select name="jobcategory" id="">
+                                                    <option data-display="Job Type">Category</option>
+                                                    <option >Web Developer</option>
+                                                    <option >Web Designer</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">City</label>
+                                        <input id="city" name="city" type="text" class="form-control resume" placeholder="" value="{{can.city}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">state</label>
+                                        <input id="city" name="state" type="text" class="form-control resume" placeholder="" value="{{can.state}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Country</label>
+                                        <div class="form-button">
+                                            <select class="nice-select rounded">
+                                                    <option data-display="Country">Country</option>
+                                                    <option value="1">Afghanistan</option>
+                                                    <option value="2">Bangladesh</option>
+                                                    <option value="3">Canada</option>
+                                                    <option value="4">Dominica</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Minimum Salary</label>
+                                        <input name="min_salary" id="minimum-salary" type="text" class="form-control resume" placeholder="$8000" value="{{can.min_salary}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Maximum Salary</label>
+                                        <input name="max_salary" id="maximum-salary" type="text" class="form-control resume" placeholder="$20000" value="{{can.max_salary}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Highest Education</label>
+                                        <input id="city" name="highestedu" type="text" class="form-control resume" placeholder="" value="{{can.highestedu}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">experience</label>
+                                        <input id="city" name="experience" type="text" class="form-control resume" placeholder="" value="{{can.experience}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Website</label>
+                                        <input id="url" name="website" type="url" class="form-control resume" placeholder="" value="{{can.website}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Email Address</label>
+                                        <input id="email-address" type="text" class="form-control resume" placeholder="" value="{{user.email}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Phone Number</label>
+                                        <input id="number" name="contact" type="text" class="form-control resume" placeholder="" value="{{can.contact}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Gender</label> {% if can.gender %}
+                                        <div class="form-button">
+                                            <input id="number" name="gender" type="text" class="form-control resume" placeholder="" value="{{can.gender}}">
+                                        </div>
+                                        {%else%}
+                                        <div class="form-button">
+                                            <select name="gender" id="">
+                                                    <option data-display="Job Type">Gender</option>
+                                                    <option >Male </option>
+                                                    <option >Female</option>
+                                                </div>
+                                                </select> {% endif %}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Shift</label> {% if can.shift%}
+                                            <div class="form-button">
+                                                <input id="number" name="shift" type="text" class="form-control resume" placeholder="" value="{{can.shift}}">
+                                            </div>
+
+                                            <!-- <select class="nice-select rounded">
+                                                    <option data-display="Shift">Shift</option>
+                                                    <option value="1">Morning</option>
+                                                    <option value="2">Evening</option>
+                                                </select> -->
+                                            {%else%}
+                                            <div class="form-button">
+
+                                                <select name="shift" id="">
+                                                    <option data-display="Job Type">Shift</option>
+                                                    <option >Morning </option>
+                                                    <option >Evening</option>
+                                                </select>
+                                            </div>
+                                            {%endif%}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Job Description</label>
+                                            <textarea name="jobdescription" id="description" rows="6" class="form-control resume" placeholder="" value="{{can.jobdescription}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <div class="input-group mt-2 mb-2">
+                                                    <div class="custom-file">
+                                                        <!-- <input type="file" name="profile_pic" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"> -->
+                                                        <!-- <input type="file" name="profile_pic"> -->
+                                                        <!-- <label class="custom-file-label rounded"><i class="mdi mdi-cloud-upload mr-1"></i> Upload Files</label> -->
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <h6 class="text-muted mb-0">Upload Images Or Documents.</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 mt-2">
+                                        <!-- <a href="#" class="btn btn-primary">Update a Profile</a> -->
+                                        <!-- <button class="btn btn-primary w-100">Update a Profile</button> -->
+                                        <input type="submit" value="Save">
+                                    </div>
+                                </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- POST A JOB END -->
+
+<!-- subscribe start -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="float-left position-relative notification-icon mr-2">
+                    <i class="mdi mdi-bell-outline text-primary"></i>
+                    <span class="badge badge-pill badge-danger">1</span>
+                </div>
+                <h5 class="mt-2 mb-0">Your Job Notification</h5>
+            </div>
+            <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
+                <form>
+                    <div class="form-group mb-0">
+                        <div class="input-group mb-0">
+                            <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- subscribe end -->
+{%endblock%}

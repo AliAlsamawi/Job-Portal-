@@ -1,0 +1,82 @@
+{% extends "jobportal/admin/base1.html" %}
+<br> {%block content%}
+<!-- End of Topbar -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Company List</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Job Post List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>is_verified</th>
+                            <th>Created_at</th>
+                            <th>Updated_at</th>
+                            <th>update</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>is_verified</th>
+                            <th>Created_at</th>
+                            <th>Updated_at</th>
+                            <th>update</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </tfoot>
+                    {% if allcompany %}
+                    <tbody>
+                        {%for i in allcompany %}
+                        <tr>
+                            <td>{{i.email}}</td>
+                            <td>{{i.role}}</td>
+                            <td>{{i.is_verified}}</td>
+                            <td>{{i.is_created}}</td>
+                            <td>{{i.is_updated}}</td>
+                            <td>
+                                <form action="{% url 'verifypage' pk=i.id %}" method="post">
+                                    {% csrt_token%}
+                                    <input type="submit" value="Update">
+
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{% url 'companydelete'%}" method="post">
+                                    {% csrt_token%}
+                                    <input type="submit" value="Delete">
+
+                                </form>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+{% endblock %}

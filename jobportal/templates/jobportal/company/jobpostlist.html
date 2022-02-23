@@ -1,0 +1,64 @@
+{% extends "jobportal/company/base1.html" %}
+<br> {%block content%}
+<!-- End of Topbar -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Job Post List</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Job Post List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Job Name</th>
+                            <th>Company Name</th>
+                            <th>Location</th>
+                            <th>Company Website</th>
+                            <th>Experience</th>
+                            <th>Salary Package</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Job Name</th>
+                            <th>Company Name</th>
+                            <th>Location</th>
+                            <th>Company Website</th>
+                            <th>Experience</th>
+                            <th>Salary Package</th>
+                        </tr>
+                    </tfoot>
+                    {% if all_job %}
+                    <tbody>
+                        {%for i in all_job %}
+                        <tr>
+                            <td>{{i.jobname}}</td>
+                            <td>{{i.companyname}}</td>
+                            <td>{{i.location}}</td>
+                            <td>{{i.companywebsite}}</td>
+                            <td>{{i.experience}}</td>
+                            <td>{{i.salarypackage}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+{% endblock %}

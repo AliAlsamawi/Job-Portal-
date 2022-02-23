@@ -1,0 +1,67 @@
+{% extends "jobportal/company/base1.html" %}
+<br> {%block content%}
+<!-- End of Topbar -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Job Apply List</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Job Apply List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Job Name</th>
+                            <th>Candidate Name</th>
+                            <th>Experience</th>
+                            <th>Location</th>
+                            <th>min_salary</th>
+                            <th>max_salary</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Job Name</th>
+                            <th>Candidate Name</th>
+                            <th>Experience</th>
+                            <th>Location</th>
+                            <th>min_salary</th>
+                            <th>max_salary</th>
+                            <th>Contact</th>
+                        </tr>
+                    </tfoot>
+                    {% if all_job %}
+                    <tbody>
+                        {%for i in all_job %}
+                        <tr>
+                            <td>{{i.job.jobname}}</td>
+                            <td>{{i.candidate.firstname}} {{i.candidate.lastname}}</td>
+                            <td>{{i.experience}}</td>
+                            <td>{{i.candidate.city}}</td>
+                            <td>{{i.min_salary}}</td>
+                            <td>{{i.max_salary}}</td>
+                            <td>{{i.candidate.contact}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+{% endblock %}
